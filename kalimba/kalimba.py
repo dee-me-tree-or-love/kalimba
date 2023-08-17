@@ -30,6 +30,7 @@ class KalimbaMenuBarApp(rumps.App):
         cmd = self.__get_colima_trigger_cmd()
         self.__toggle_colima(cmd)
 
+    # TODO(tech-debt): make the timer configurable
     @rumps.timer(10)
     def check_status(self, _):
         try:
@@ -68,5 +69,9 @@ class KalimbaMenuBarApp(rumps.App):
             rumps.alert("failed to toggle colima...", "🤕")
 
 
-if __name__ == "__main__":
+def run_kalimba():
     KalimbaMenuBarApp().run()
+
+
+if __name__ == "__main__":
+    run_kalimba()

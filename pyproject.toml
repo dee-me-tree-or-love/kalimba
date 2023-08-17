@@ -1,15 +1,21 @@
 [tool.poetry]
-name = "colima-menu-bar"
+name = "kalimba"
 version = "0.1.0"
 description = "A MacOS menu bar app to control Colima CLI."
 authors = ["Mitja O <dmtree.dev@yahoo.com>"]
 license = "MIT"
 readme = "README.md"
-packages = [{ include = "colima_menu_bar" }]
+packages = [{ include = "kalimba" }]
+# TODO(tech-debt): make this project startable from the CLI
+
+[tool.poetry.scripts]
+# command_name = module_for_handler : function_for_handler
+kalimba = 'kalimba.cli:start'
 
 [tool.poetry.dependencies]
 python = "^3.10"
 rumps = "^0.4.0"
+click = "^8.1.6"
 
 
 [tool.poetry.group.dev.dependencies]
