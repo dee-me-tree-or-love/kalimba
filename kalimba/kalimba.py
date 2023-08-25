@@ -8,6 +8,7 @@ import logging as l
 
 l.basicConfig()
 logger = l.getLogger(__name__)
+# TODO(backlog): make log level configurable
 logger.setLevel(l.DEBUG)
 
 
@@ -30,8 +31,8 @@ class KalimbaMenuBarApp(rumps.App):
         cmd = self.__get_colima_trigger_cmd()
         self.__toggle_colima(cmd)
 
-    # TODO(tech-debt): make the timer configurable
-    @rumps.timer(10)
+    # TODO(backlog): make the timer configurable
+    @rumps.timer(30)
     def check_status(self, _):
         try:
             result = subprocess.run(
@@ -69,7 +70,9 @@ class KalimbaMenuBarApp(rumps.App):
             rumps.alert("failed to toggle colima...", "🤕")
 
 
+# mem(docs-link): update README if this changes.
 def run_kalimba():
+    logger.info('Starting the kalimba app... 🎶')
     KalimbaMenuBarApp().run()
 
 
