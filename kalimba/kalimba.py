@@ -35,25 +35,20 @@ class ToggleMenuItem(rumps.MenuItem):
 class KalimbaMenuBarApp(rumps.App):
     __colima_running = False
 
-    def __init__(self):
+    @staticmethod
+    def prepare_cli_pool() -> ThreadPoolExecutor:
+        return ThreadPoolExecutor(max_workers=1)
+
+    def __init__(self, colima_cli_pool: ThreadPoolExecutor):
         super(KalimbaMenuBarApp, self).__init__("Kalimba", "🐳")
         self.__status_menu = StatusMenuItem()
         self.__toggle_menu = ToggleMenuItem()
         self.menu = [self.__status_menu, self.__toggle_menu]
-        self.__colima_cli_single_pool = ThreadPoolExecutor(max_workers=1)
+        self.__colima_cli_single_pool = colima_cli_pool
 
-    # FIXME: the cleanup should be called on any exit of the App
-    def cleanup(self) -> None:
-        self.__colima_cli_single_pool.shutdown()
-
-    # TODO(backlog): make the timer configurable
     @rumps.timer(30)
     def check_status(self, _) -> None:
         self.__check_status_handler()
-
-    @rumps.clicked(ToggleMenuItem.DEFAULT_TITLE)
-    def toggle(self, _) -> None:
-        self.__colima_cli_single_pool.submit(self.__toggle_handler)
 
     def __check_status_handler(self) -> None:
         try:
@@ -72,6 +67,10 @@ class KalimbaMenuBarApp(rumps.App):
             self.__update_colima_run_status(colima_running)
         except Exception as error:
             self.__handle_error(error)
+
+    @rumps.clicked(ToggleMenuItem.DEFAULT_TITLE)
+    def queued_toggle(self, _) -> None:
+        self.__colima_cli_single_pool.submit(self.__toggle_handler)
 
     def __toggle_handler(self) -> None:
         try:
@@ -112,7 +111,9 @@ class KalimbaMenuBarApp(rumps.App):
 def run_kalimba(verbose=False):
     logger.setLevel(l.DEBUG if verbose else l.INFO)
     logger.info("Starting the kalimba app... 🎶")
-    KalimbaMenuBarApp().run()
+
+    with KalimbaMenuBarApp.prepare_cli_pool() as pool:
+        KalimbaMenuBarApp(pool).run()
 
 
 if __name__ == "__main__":
