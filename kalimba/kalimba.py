@@ -41,10 +41,10 @@ class KalimbaMenuBarApp(rumps.App):
 
     def __init__(self, colima_cli_pool: ThreadPoolExecutor):
         super(KalimbaMenuBarApp, self).__init__("Kalimba", "🐳")
+        self.__colima_cli_single_pool = colima_cli_pool
         self.__status_menu = StatusMenuItem()
         self.__toggle_menu = ToggleMenuItem()
         self.menu = [self.__status_menu, self.__toggle_menu]
-        self.__colima_cli_single_pool = colima_cli_pool
 
     @rumps.timer(30)
     def check_status(self, _) -> None:
