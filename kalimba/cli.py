@@ -33,7 +33,6 @@ def __run_foreground_kalimba(verbose: bool):
     default=False,
     help="Run the Kalimba process with extended logging",
 )
-@click.pass_context
 def start(detached: bool, verbose: bool):
     """Simple starter for Kalimba"""
     if detached:
