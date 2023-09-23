@@ -35,10 +35,8 @@ def __run_foreground_kalimba(verbose: bool):
 )
 def start(detached: bool, verbose: bool):
     """Simple starter for Kalimba"""
-    if detached:
-        __run_detached_kalimba(verbose)
-    else:
-        __run_foreground_kalimba(verbose)
+    runner = __run_detached_kalimba if detached else __run_foreground_kalimba
+    runner(verbose)
 
 
 if __name__ == "__main__":
