@@ -20,6 +20,13 @@ INFO:kalimba.kalimba:Starting the kalimba app... 🎶
 >
 > ![kalimba-menu-bar](docs/assets//kalimba-basic.png)
 
+### Getting `kalimba` help
+
+```bash
+$ kalimba --help
+Usage: kalimba [OPTIONS] ...
+```
+
 ## Installation
 
 ### Give it a local try
@@ -31,7 +38,7 @@ poetry install # installs kalimba in poetry's environment
 poetry run kalimba --help # shows some tips-and-tricks
 poetry run kalimba # starts the app
 ```
-
+<!-- markdownlint-disable MD033 -->
 <details>
 <summary><i>More temporary installation options 👀</i></summary>
 
@@ -74,3 +81,4 @@ poetry run kalimba # starts the app
     ```
 
 </details>
+<!-- markdownlint-enable MD033 -->
