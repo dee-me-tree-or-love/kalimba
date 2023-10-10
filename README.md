@@ -20,6 +20,13 @@ INFO:kalimba.kalimba:Starting the kalimba app... 🎶
 >
 > ![kalimba-menu-bar](docs/assets//kalimba-basic.png)
 
+### Getting `kalimba` help
+
+```bash
+$ kalimba --help
+Usage: kalimba [OPTIONS] ...
+```
+
 ## Installation
 
 ### Give it a local try
