@@ -2,7 +2,7 @@
 
 > 🌱 This is an early WIP, more information coming soon ✨
 
-`kalimba` is a tiny menu bar applicaiton allowing to monitor and toggle
+`kalimba` is a tiny menu bar application allowing to monitor and toggle
 the status of [`colima`](https://github.com/abiosoft/colima) with a basic GUI
 written using [`rumps`](https://github.com/jaredks/rumps).
 
@@ -18,7 +18,7 @@ INFO:kalimba.kalimba:Starting the kalimba app... 🎶
 
 > 🧙 and it launches the `kalimba` 🐳 application! ✨
 >
-> ![kalimba-menu-bar](docs/assets//kalimba-basic.png)
+> ![kalimba-menu-bar](docs/assets/kalimba-basic.png)
 
 ### Getting `kalimba` help
 
