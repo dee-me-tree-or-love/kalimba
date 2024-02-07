@@ -28,17 +28,18 @@ def __run_foreground_kalimba(verbose: bool):
     "--detached",
     is_flag=True,
     default=False,
-    help="Run the Kalimba process in a detached (sub-process) mode",
+    help=f"Run the {APP_NAME} process in a detached (sub-process) mode",
 )
 @click.option(
     "-v",
     "--verbose",
     is_flag=True,
     default=False,
-    help="Run the Kalimba process with extended logging",
+    help=f"Run the {APP_NAME} process with extended logging",
 )
 def start(detached: bool, verbose: bool):
-    """Simple starter for Kalimba"""
+    # TODO(tech-debt): make sure Kalimba here is also taken from the APP_NAME variable.
+    """Simple starter for Kalimba (Colima Menu Bar) app"""
     logger.setLevel(l.DEBUG if verbose else l.INFO)
     runner = __run_detached_kalimba if detached else __run_foreground_kalimba
     runner(verbose)
