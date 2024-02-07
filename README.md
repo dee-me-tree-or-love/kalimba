@@ -11,7 +11,7 @@ written using [`rumps`](https://github.com/jaredks/rumps).
 ### Start the `kalimba` menu bar app
 
 ```bash
-$ kalimba --foreground
+$ kalimba
 INFO:kalimba.kalimba:Starting the kalimba app... 🎶
 ...
 ```
