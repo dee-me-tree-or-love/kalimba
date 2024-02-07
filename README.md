@@ -39,21 +39,75 @@ poetry run kalimba --help # shows some tips-and-tricks
 poetry run kalimba # starts the app
 ```
 <!-- markdownlint-disable MD033 -->
+<details open="true">
+<summary><i>More temporary installation options</i> 👀</summary>
+
 <details>
-<summary><i>More temporary installation options 👀</i></summary>
+<summary><b>Using local build</b> 🪵</summary>
 
-#### Install via local pypiserver
+#### Install local build directly
 
-1. Configure `poetry`:
+1. Build the project
 
     ```bash
-    poetry config repositories.local http://localhost 
+    $ poetry build
+    Building kalimba (<version>)
+     ...
+     - Built kalimba-<version>-.tar.gz
+     ...
     ```
 
-2. Start the local [`pypi-server`](https://github.com/pypiserver/pypiserver)
+2. Check build results:
+
+    ```bash
+    $ ls ./dist
+    ...
+    kalimba-<version>-.tar.gz
+    ...
+    ```
+
+3. Install the local `tar` file:
+
+    > Don't forget to replace the `<version>` to the built result. 💡
+
+    ```bash
+    $ pip install --user ./dist/kalimba-<version>-.tar.gz
+    ...
+    Successfully installed ... kalimba-<version> ...
+    ```
+
+4. Check direct access to `kalimba` CLI
+
+    ```bash
+    $ kalimba --help
+
+    Usage: kalimba [OPTIONS]
+    ...
+    ```
+
+</details>
+
+<details>
+<summary><b>Using pypiserver</b> 🏕️</summary>
+
+#### Install via (local) [pypiserver](https://github.com/pypiserver/pypiserver)
+
+1. Start the local [`pypi-server`](https://github.com/pypiserver/pypiserver)
+
+    > This guide shows how to use a locally running pypiserver.  
+    > Feel free to skip to the next step if you already have one running elsewhere. ✌️
 
     ```bash
     docker run --rm -p 80:8080 pypiserver/pypiserver:latest run -P . -a . -vvv
+    ```
+
+2. Configure `poetry`:
+
+    > If you would like to use a remotely deployed one, feel free to
+    > adjust the pypiserver URLs here and further. 🔁
+
+    ```bash
+    poetry config repositories.local http://localhost 
     ```
 
 3. Build and publish the project
@@ -80,5 +134,6 @@ poetry run kalimba # starts the app
     ...
     ```
 
+</details>
 </details>
 <!-- markdownlint-enable MD033 -->
